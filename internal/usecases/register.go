@@ -13,16 +13,21 @@ import (
 	"golang.org/x/crypto/nacl/box"
 )
 
-func NewRegisterRepositorySecret(client *github.Client) *RegisterRepositorySecret {
+type GHActionsService interface {
+	GetRepoPublicKey(ctx context.Context, owner, repo string) (*github.PublicKey, *github.Response, error)
+	CreateOrUpdateRepoSecret(ctx context.Context, owner, repo string, eSecret *github.EncryptedSecret) (*github.Response, error)
+}
+
+func NewRegisterRepositorySecret(client GHActionsService) *RegisterRepositorySecret {
 	return &RegisterRepositorySecret{client: client}
 }
 
 type RegisterRepositorySecret struct {
-	client *github.Client
+	client GHActionsService
 }
 
 func (u *RegisterRepositorySecret) Do(ctx context.Context, repoOwner string, repoName string, secretName string, plainMsg string) error {
-	pubKey, _, err := u.client.Actions.GetRepoPublicKey(ctx, repoOwner, repoName)
+	pubKey, _, err := u.client.GetRepoPublicKey(ctx, repoOwner, repoName)
 	if err != nil {
 		return fmt.Errorf("GetRepoPublicKey: %w", err)
 	}
@@ -44,7 +49,7 @@ func (u *RegisterRepositorySecret) Do(ctx context.Context, repoOwner string, rep
 		slog.String("repo.name", repoName),
 		slog.String("secret.name", secretName),
 	)
-	if _, err := u.client.Actions.CreateOrUpdateRepoSecret(ctx, repoOwner, repoName, secret); err != nil {
+	if _, err := u.client.CreateOrUpdateRepoSecret(ctx, repoOwner, repoName, secret); err != nil {
 		return fmt.Errorf("CreateOrUpdateRepoSecret: %w", err)
 	}
 	return nil
