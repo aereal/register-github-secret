@@ -86,7 +86,7 @@ func TestRegisterRepositorySecret_Do(t *testing.T) {
 			ctx := t.Context()
 			gotErr := usecases.
 				NewRegisterRepositorySecret(mockClient).
-				Do(ctx, testCase.input.repoOwner, testCase.input.repoName, testCase.input.secretName, testCase.input.plainMsg)
+				DoRegisterRepositorySecret(ctx, testCase.input.repoOwner, testCase.input.repoName, testCase.input.secretName, testCase.input.plainMsg)
 			if diff := diffErrorsConservatively(testCase.wantErr, gotErr); diff != "" {
 				t.Errorf("error (-want, +got):\n%s", diff)
 			}

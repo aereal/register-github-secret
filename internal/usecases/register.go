@@ -26,7 +26,7 @@ type RegisterRepositorySecret struct {
 	client GHActionsService
 }
 
-func (u *RegisterRepositorySecret) Do(ctx context.Context, repoOwner string, repoName string, secretName string, plainMsg string) error {
+func (u *RegisterRepositorySecret) DoRegisterRepositorySecret(ctx context.Context, repoOwner string, repoName string, secretName string, plainMsg string) error {
 	pubKey, _, err := u.client.GetRepoPublicKey(ctx, repoOwner, repoName)
 	if err != nil {
 		return fmt.Errorf("GetRepoPublicKey: %w", err)
