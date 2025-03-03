@@ -1,40 +1,80 @@
 ---
-
 linters:
   disable-all: true
   enable:
     - asasalint
+    - bidichk
     - bodyclose
-    - containedctx
-    - decorder
+    - contextcheck
+    - durationcheck
     - errcheck
     - errchkjson
-    - errname
     - errorlint
     - exhaustive
-    - forcetypeassert
-    - gochecknoinits
-    - goconst
-    - gocritic
-    - godox
-    - goerr113
-    - goprintffuncname
+    - gocheckcompilerdirectives
+    - gochecksumtype
     - gosec
     - gosimple
     - govet
     - ineffassign
-    - interfacebloat
-    - ireturn
     - makezero
-    - noctx
-    - nolintlint
-    - nosprintfhostport
-    - prealloc
+    - nilerr
     - reassign
+    - recvcheck
+    - spancheck
     - staticcheck
-    - tenv
     - thelper
-    - typecheck
-    - unconvert
     - unparam
     - unused
+    - usetesting
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+    disable-default-exclusions: false
+  govet:
+    disable-all: true
+    enable:
+      - appends
+      - asmdecl
+      - assign
+      - atomic
+      - atomicalign
+      - bools
+      - buildtag
+      - cgocall
+      - composites
+      - copylocks
+      - deepequalerrors
+      - defers
+      - directive
+      - errorsas
+      - fieldalignment
+      - findcall
+      - framepointer
+      - httpresponse
+      - ifaceassert
+      - loopclosure
+      - lostcancel
+      - nilfunc
+      - nilness
+      - printf
+      - reflectvaluecompare
+      - shadow
+      - shift
+      - sigchanyzer
+      - slog
+      - sortslice
+      - stdmethods
+      - stdversion
+      - stringintconv
+      - structtag
+      - testinggoroutine
+      - tests
+      - timeformat
+      - unmarshal
+      - unreachable
+      - unsafeptr
+      - unusedresult
+      - unusedwrite
+      - waitgroup
