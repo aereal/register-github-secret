@@ -76,7 +76,7 @@ type qualifiedRepo struct {
 
 var _ flag.Value = (*qualifiedRepo)(nil)
 
-func (r qualifiedRepo) String() string { return r.Owner + "/" + r.Repo }
+func (r *qualifiedRepo) String() string { return r.Owner + "/" + r.Repo }
 
 func (r *qualifiedRepo) Set(v string) error {
 	owner, repo, ok := strings.Cut(v, "/")
