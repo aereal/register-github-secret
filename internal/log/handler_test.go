@@ -99,7 +99,7 @@ func TestHandler(t *testing.T) {
 		jh := slog.NewJSONHandler(out, &slog.HandlerOptions{})
 		return log.NewErrorAttributeTransformer(jh)
 	}
-	newResult := func(t *testing.T) map[string]any {
+	newResult := func(_ *testing.T) map[string]any {
 		ret := map[string]any{}
 		for {
 			line, err := out.ReadBytes('\n')
