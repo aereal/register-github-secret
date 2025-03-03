@@ -11,10 +11,10 @@ import (
 
 func TestApp_Run(t *testing.T) {
 	testCases := []struct {
+		wantErr error
+		doMock  func(m *MockRegisterRepositorySecretUsecase)
 		name    string
 		args    []string
-		doMock  func(m *MockRegisterRepositorySecretUsecase)
-		wantErr error
 	}{
 		{
 			name: "some repos specified",

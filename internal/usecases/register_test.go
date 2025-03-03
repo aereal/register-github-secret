@@ -28,10 +28,10 @@ func TestRegisterRepositorySecret_Do(t *testing.T) {
 		plainMsg   string
 	}
 	testCases := []struct {
-		name    string
-		input   input
-		doMock  func(m *MockGHActionsService)
 		wantErr error
+		doMock  func(m *MockGHActionsService)
+		input   input
+		name    string
 	}{
 		{
 			name: "ok",

@@ -17,9 +17,9 @@ import (
 
 func TestHandler_error_replace(t *testing.T) {
 	testCases := []struct {
-		name   string
 		runLog func(l *slog.Logger)
 		want   func() []map[string]any
+		name   string
 	}{
 		{
 			name:   "with no error attribute",
