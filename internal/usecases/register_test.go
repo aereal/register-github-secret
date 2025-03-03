@@ -8,9 +8,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/aereal/register-github-secret/internal/assertions"
 	"github.com/aereal/register-github-secret/internal/usecases"
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/google/go-github/v69/github"
 	"go.uber.org/mock/gomock"
 	"golang.org/x/crypto/nacl/box"
@@ -87,7 +86,7 @@ func TestRegisterRepositorySecret_Do(t *testing.T) {
 			gotErr := usecases.
 				NewRegisterRepositorySecret(mockClient).
 				DoRegisterRepositorySecret(ctx, testCase.input.repoOwner, testCase.input.repoName, testCase.input.secretName, testCase.input.plainMsg)
-			if diff := diffErrorsConservatively(testCase.wantErr, gotErr); diff != "" {
+			if diff := assertions.DiffErrorsConservatively(testCase.wantErr, gotErr); diff != "" {
 				t.Errorf("error (-want, +got):\n%s", diff)
 			}
 		})
@@ -135,26 +134,6 @@ var (
 		}, nil
 	})
 )
-
-type literalError struct {
-	msg string
-}
-
-func (e *literalError) Error() string { return e.msg }
-
-func (e *literalError) Is(other error) bool {
-	if e == nil {
-		return other == nil
-	}
-	if other == nil {
-		return false
-	}
-	return e.msg == other.Error()
-}
-
-func diffErrorsConservatively(want, got error) string {
-	return cmp.Diff(want, got, cmpopts.EquateErrors())
-}
 
 func ref[T any](t T) *T { return &t }
 

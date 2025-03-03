@@ -3,9 +3,8 @@ package cli_test
 import (
 	"testing"
 
+	"github.com/aereal/register-github-secret/internal/assertions"
 	"github.com/aereal/register-github-secret/internal/cli"
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 	"go.uber.org/mock/gomock"
 )
 
@@ -50,7 +49,7 @@ func TestApp_Run(t *testing.T) {
 		{
 			name:    "invalid repo",
 			args:    []string{"app", "-secret-name", "MY_SECRET", "-secret-value", "blah blah", "-repos", "repo1"},
-			wantErr: literalError{`invalid value "repo1" for flag -repos: malformed qualified repository name: "repo1"`},
+			wantErr: assertions.LiteralError(`invalid value "repo1" for flag -repos: malformed qualified repository name: "repo1"`),
 		},
 		{
 			name:    "no repos specified",
@@ -78,28 +77,11 @@ func TestApp_Run(t *testing.T) {
 			app := cli.NewApp(mockUsecase)
 			ctx := t.Context()
 			gotErr := app.Run(ctx, tc.args)
-			if diff := diffErrorsConservatively(tc.wantErr, gotErr); diff != "" {
+			if diff := assertions.DiffErrorsConservatively(tc.wantErr, gotErr); diff != "" {
 				t.Errorf("error (-want, +got):\n%s", diff)
 			}
 		})
 	}
 }
 
-var errFailed = literalError{"failure"}
-
-type literalError struct {
-	msg string
-}
-
-func (e literalError) Error() string { return e.msg }
-
-func (e literalError) Is(other error) bool {
-	if other == nil {
-		return false
-	}
-	return e.msg == other.Error()
-}
-
-func diffErrorsConservatively(want, got error) string {
-	return cmp.Diff(want, got, cmpopts.EquateErrors())
-}
+var errFailed = assertions.LiteralError("failure")
