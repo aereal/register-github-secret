@@ -1,3 +1,5 @@
+//go:generate go tool mockgen -destination ./mock_test.go -package usecases_test -typed -write_command_comment=false github.com/aereal/github-ops/internal/usecases GHActionsService
+
 package usecases
 
 import (
