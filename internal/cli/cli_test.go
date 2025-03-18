@@ -3,8 +3,8 @@ package cli_test
 import (
 	"testing"
 
-	"github.com/aereal/register-github-secret/internal/assertions"
-	"github.com/aereal/register-github-secret/internal/cli"
+	"github.com/aereal/github-ops/internal/assertions"
+	"github.com/aereal/github-ops/internal/cli"
 	"go.uber.org/mock/gomock"
 )
 

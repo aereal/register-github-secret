@@ -5,9 +5,9 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/aereal/register-github-secret/internal/cli"
-	"github.com/aereal/register-github-secret/internal/log"
-	"github.com/aereal/register-github-secret/internal/usecases"
+	"github.com/aereal/github-ops/internal/cli"
+	"github.com/aereal/github-ops/internal/log"
+	"github.com/aereal/github-ops/internal/usecases"
 	"github.com/google/go-github/v69/github"
 )
 

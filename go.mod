@@ -1,4 +1,4 @@
-module github.com/aereal/register-github-secret
+module github.com/aereal/github-ops
 
 go 1.24.0
 
