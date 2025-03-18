@@ -8,8 +8,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/aereal/register-github-secret/internal/assertions"
-	"github.com/aereal/register-github-secret/internal/usecases"
+	"github.com/aereal/github-ops/internal/assertions"
+	"github.com/aereal/github-ops/internal/usecases"
 	"github.com/google/go-github/v69/github"
 	"go.uber.org/mock/gomock"
 	"golang.org/x/crypto/nacl/box"

@@ -10,7 +10,7 @@ import (
 	"testing"
 	"testing/slogtest"
 
-	"github.com/aereal/register-github-secret/internal/log"
+	"github.com/aereal/github-ops/internal/log"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 )

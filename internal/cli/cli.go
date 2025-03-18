@@ -1,4 +1,4 @@
-//go:generate go tool mockgen -destination ./usecase_mock_test.go -package cli_test -typed -write_command_comment=false github.com/aereal/register-github-secret/internal/cli RegisterRepositorySecretUsecase
+//go:generate go tool mockgen -destination ./usecase_mock_test.go -package cli_test -typed -write_command_comment=false github.com/aereal/github-ops/internal/cli RegisterRepositorySecretUsecase
 
 package cli
 

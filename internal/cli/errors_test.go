@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/aereal/register-github-secret/internal/cli"
+	"github.com/aereal/github-ops/internal/cli"
 )
 
 func TestMalformedQualifiedRepoError_Is(t *testing.T) {
